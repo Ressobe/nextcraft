@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <main className="flex h-full flex-col items-center justify-center ">
+    <main className="flex h-screen flex-col items-center justify-center ">
       <LoginButton>
-        <Button variant="default" className="rounded px-8">
+        <Button variant="default" className="rounded px-4">
           Sign In
         </Button>
       </LoginButton>

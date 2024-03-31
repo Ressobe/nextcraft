@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Nextcraft - NextJS template for fullstack projects",
+  title: "Nextcraft - Next.js template for fullstack projects",
   description: "",
 };
 
