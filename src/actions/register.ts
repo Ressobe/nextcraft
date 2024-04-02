@@ -2,6 +2,8 @@
 
 import * as z from "zod";
 import { RegisterSchema } from "@/schemas";
+import bcrypt from "bcryptjs";
+import { createUser, getUserByEmail } from "@/database/user";
 
 export async function registerAction(formData: z.infer<typeof RegisterSchema>) {
   const validatedFormData = RegisterSchema.safeParse(formData);
@@ -10,5 +12,18 @@ export async function registerAction(formData: z.infer<typeof RegisterSchema>) {
     return { error: "Invalid fields!" };
   }
 
-  return { sucess: "Email was sent!" };
+  const { email, name, password } = validatedFormData.data;
+
+  const existingUser = await getUserByEmail(email);
+  if (existingUser) {
+    return { error: "User with this email already exist!" };
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  await createUser(email, name, hashedPassword);
+
+  // todo send verification token email
+
+  return { sucess: "User created" };
 }
