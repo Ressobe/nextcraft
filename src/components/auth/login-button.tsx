@@ -22,8 +22,8 @@ export default function LoginButton({
     return <span>todo: implement modal</span>;
   }
   return (
-    <button onClick={handleClick} className="cursor-pointer">
+    <div onClick={handleClick} className="cursor-pointer">
       {children}
-    </button>
+    </div>
   );
 }
