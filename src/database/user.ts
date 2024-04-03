@@ -31,3 +31,12 @@ export async function verifyUser(userId: string, email: string) {
     },
   });
 }
+
+export async function updateUserPassword(userId: string, newPassword: string) {
+  await db.user.update({
+    where: { id: userId },
+    data: {
+      password: newPassword,
+    },
+  });
+}
