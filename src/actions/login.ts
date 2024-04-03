@@ -5,6 +5,9 @@ import { LoginSchema } from "@/schemas";
 import { signIn } from "@/auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { AuthError } from "next-auth";
+import { generateVerificationToken } from "@/lib/tokens";
+import { getUserByEmail } from "@/database/user";
+import { sendVerificationEmail } from "@/lib/mail";
 
 export async function loginAction(formData: z.infer<typeof LoginSchema>) {
   const validatedFormData = LoginSchema.safeParse(formData);
@@ -14,6 +17,17 @@ export async function loginAction(formData: z.infer<typeof LoginSchema>) {
   }
 
   const { email, password } = validatedFormData.data;
+
+  const existingUser = await getUserByEmail(email);
+  if (existingUser && !existingUser.emailVerified) {
+    const verificationToken = await generateVerificationToken(email);
+    await sendVerificationEmail(
+      verificationToken.email,
+      verificationToken.token,
+    );
+
+    return { sucess: "Confirmation email sent!" };
+  }
 
   try {
     await signIn("credentials", {

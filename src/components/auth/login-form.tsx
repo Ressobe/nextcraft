@@ -54,7 +54,7 @@ export function LoginForm() {
     <CardWrapper
       headerLabel="Welcome back"
       backButtonLabel="Don't have an account?"
-      backButtonHref="/register"
+      backButtonHref="/auth/register"
       showSocial
     >
       <Form {...form}>
@@ -102,7 +102,7 @@ export function LoginForm() {
           <Button
             variant="secondary"
             type="submit"
-            className="w-full rounded-lg"
+            className="w-full"
             disabled={isPending}
           >
             Login
