@@ -4,6 +4,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "@/lib/db";
 import { getUserById } from "@/database/user";
 import { UserRole } from "@prisma/client";
+import { getAccountByUserId } from "./database/account";
 
 export const {
   handlers: { GET, POST },
@@ -41,6 +42,11 @@ export const {
       if (token.role && session.user) {
         session.user.role = token.role as UserRole;
       }
+      if (session.user) {
+        session.user.name = token.name;
+        session.user.email = token.email as string;
+        session.user.isOAuth = token.OAuth as boolean;
+      }
 
       return session;
     },
@@ -50,7 +56,13 @@ export const {
       const existingUser = await getUserById(token.sub);
       if (!existingUser) return token;
 
+      const account = await getAccountByUserId(existingUser.id);
+
+      token.OAuth = !!account;
+      token.name = existingUser.name;
+      token.email = existingUser.email;
       token.role = existingUser.role;
+
       return token;
     },
   },

@@ -31,6 +31,7 @@ export function LoginForm() {
     searchParams.get("error") === "OAuthAccountNotLinked"
       ? "Email already in use with diffrent provider"
       : "";
+  const callbackUrl = searchParams.get("callbackUrl");
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -45,7 +46,7 @@ export function LoginForm() {
     setSucess("");
 
     startTransition(async () => {
-      const response = await loginAction(values);
+      const response = await loginAction(values, callbackUrl);
       setError(response.error);
       setSucess(response.sucess);
     });

@@ -1,4 +1,6 @@
 import { db } from "@/lib/db";
+import * as z from "zod";
+import { SettingsSchema } from "@/schemas";
 
 export async function getUserByEmail(email: string) {
   return await db.user.findUnique({ where: { email } });
@@ -37,6 +39,18 @@ export async function updateUserPassword(userId: string, newPassword: string) {
     where: { id: userId },
     data: {
       password: newPassword,
+    },
+  });
+}
+
+export async function updateUser(
+  userId: string,
+  values: z.infer<typeof SettingsSchema>,
+) {
+  await db.user.update({
+    where: { id: userId },
+    data: {
+      ...values,
     },
   });
 }

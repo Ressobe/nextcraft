@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <LoginButton>
+    <LoginButton mode="redirect" asChild>
       <Button variant="default" className="rounded px-4">
         Sign In
       </Button>

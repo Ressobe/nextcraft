@@ -1,17 +1,18 @@
-import { signOut } from "@/auth";
-import { Button } from "@/components/ui/button";
+"use client";
 
-export function LogoutButton() {
+import { logoutAction } from "@/actions/logout";
+
+type LogoutButtonProps = {
+  children?: React.ReactNode;
+};
+
+export function LogoutButton({ children }: LogoutButtonProps) {
+  const handleClick = () => {
+    logoutAction();
+  };
   return (
-    <form
-      action={async () => {
-        "use server";
-        await signOut();
-      }}
-    >
-      <Button variant="secondary" type="submit">
-        Sign out
-      </Button>
-    </form>
+    <span onClick={handleClick} className="hover:cursor-pointer">
+      {children}
+    </span>
   );
 }
