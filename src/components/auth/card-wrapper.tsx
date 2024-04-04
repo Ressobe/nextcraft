@@ -11,7 +11,7 @@ import { Social } from "./social";
 import { BackButton } from "./back-button";
 
 type CardWrapperProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   headerLabel: string;
   backButtonLabel: string;
   backButtonHref: string;
@@ -26,7 +26,7 @@ export function CardWrapper({
   showSocial,
 }: CardWrapperProps) {
   return (
-    <Card className="w-[400px] shadow-md">
+    <Card className="w-[400px] shadow-md rounded">
       <CardHeader>
         <Header label={headerLabel} />
       </CardHeader>
