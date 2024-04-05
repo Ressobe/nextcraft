@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export async function Navbar() {
+export function Navbar() {
   const pathName = usePathname();
 
   return (

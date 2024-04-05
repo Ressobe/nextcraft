@@ -18,6 +18,7 @@ export async function settingsAction(values: z.infer<typeof SettingsSchema>) {
   if (!dbUser) {
     return { error: "Unauthorized !" };
   }
+
   if (user.isOAuth) {
     values.email = undefined;
     values.password = undefined;

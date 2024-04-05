@@ -42,6 +42,7 @@ export default function SettingsPage() {
   });
 
   const onSubmit = async (values: z.infer<typeof SettingsSchema>) => {
+    console.log(values.image);
     setError("");
     setSucess("");
     startTransition(async () => {
@@ -56,7 +57,7 @@ export default function SettingsPage() {
         if (result.error) {
           setError(result.error);
         }
-      } catch {
+      } catch (error) {
         setError("Something went wrong!");
       }
     });
