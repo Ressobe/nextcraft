@@ -3,11 +3,13 @@
 import "react-image-crop/dist/ReactCrop.css";
 import ReactCrop, { Crop, makeAspectCrop } from "react-image-crop";
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
-import { Input } from "./ui/input";
-import { FormError } from "./form-error";
-import { Button } from "./ui/button";
+import { Input } from "@/components/ui/input";
+import { FormError } from "@/components/form-error";
+import { Button } from "@/components/ui/button";
 import { newAvatarAction } from "@/actions/new-avatar";
 import { useCurrentUser } from "@/hooks/use-current-user";
+import { useSession } from "next-auth/react";
+import { useToast } from "./ui/use-toast";
 
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
@@ -21,6 +23,8 @@ export function UserNewAvatar({
   closeModal,
   setNewAvatar,
 }: UserNewAvatarProps) {
+  const { toast } = useToast();
+  const { update } = useSession();
   const user = useCurrentUser();
   const [error, setError] = useState("");
   const [imgSrc, setImgSrc] = useState("");
@@ -71,10 +75,27 @@ export function UserNewAvatar({
     setCrop(crop);
   };
 
-  const handleClick = () => {
-    console.log(imgSrc);
-    newAvatarAction(imgSrc, user?.id);
-    setNewAvatar(imgSrc);
+  const handleClick = async () => {
+    const result = await newAvatarAction(imgSrc, user?.id);
+
+    if (result.success) {
+      update();
+      setNewAvatar(imgSrc);
+      toast({
+        variant: "default",
+        title: "Success",
+        description: result.success,
+      });
+    }
+
+    if (result.error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: result.error,
+      });
+    }
+
     closeModal();
   };
 
@@ -94,7 +115,7 @@ export function UserNewAvatar({
         <div className="flex flex-col items-center">
           <ReactCrop
             crop={crop}
-            onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
+            onChange={(_, percentCrop) => setCrop(percentCrop)}
             circularCrop
             keepSelection
             aspect={ASPECT_RATIO}

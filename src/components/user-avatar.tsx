@@ -4,21 +4,24 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { PencilIcon } from "lucide-react";
 import { useState } from "react";
 import { UserNewAvatar } from "./user-new-avatar";
+import { FaUser } from "react-icons/fa";
 
 type UserAvatarProps = {
-  avatarUrl: string;
+  avatarUrl?: string | null;
 };
 
 export function UserAvatar({ avatarUrl }: UserAvatarProps) {
   const [modalOpen, setModalOpen] = useState(false);
-  const [userAvatar, setUserAvatar] = useState(avatarUrl);
+  const [userAvatar, setUserAvatar] = useState(avatarUrl || "");
 
   return (
     <Dialog open={modalOpen} onOpenChange={setModalOpen}>
       <div className="relative w-fit mb-10">
         <Avatar className="h-28  w-28">
-          <AvatarImage src={userAvatar} />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarImage src={userAvatar || ""} />
+          <AvatarFallback>
+            <FaUser className="w-10 h-10" />
+          </AvatarFallback>
         </Avatar>
         <DialogTrigger asChild>
           <button
