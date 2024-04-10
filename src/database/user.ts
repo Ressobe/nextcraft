@@ -43,6 +43,15 @@ export async function updateUserPassword(userId: string, newPassword: string) {
   });
 }
 
+export async function updateUserImage(userId: string, newImage: string) {
+  await db.user.update({
+    where: { id: userId },
+    data: {
+      image: newImage,
+    },
+  });
+}
+
 export async function updateUser(
   userId: string,
   values: z.infer<typeof SettingsSchema>,
