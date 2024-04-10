@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { FormSucess } from "@/components/form-sucess";
 import { FormError } from "@/components/form-error";
+import { UserAvatar } from "@/components/user-avatar";
 
 export default function SettingsPage() {
   const user = useCurrentUser();
@@ -42,7 +43,6 @@ export default function SettingsPage() {
   });
 
   const onSubmit = async (values: z.infer<typeof SettingsSchema>) => {
-    console.log(values.image);
     setError("");
     setSucess("");
     startTransition(async () => {
@@ -68,6 +68,7 @@ export default function SettingsPage() {
         <p className="text-2xl font-semibold text-center">Settings</p>
       </CardHeader>
       <CardContent>
+        <UserAvatar avatarUrl={user?.image} />
         <Form {...form}>
           <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
             <div className="space-y-4">
