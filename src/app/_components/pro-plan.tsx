@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 export default function ProPlan() {
   return (
@@ -32,7 +32,9 @@ export default function ProPlan() {
         </ul>
       </div>
       <div className="mt-6">
-        <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:brightness-150">Get Started</Button>
+        <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:brightness-150">
+          Get Started
+        </Button>
       </div>
     </div>
   );
