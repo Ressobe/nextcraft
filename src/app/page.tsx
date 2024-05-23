@@ -1,12 +1,5 @@
-import LoginButton from "@/components/auth/login-button";
-import { Button } from "@/components/ui/button";
+import { Pricing } from "./_components/pricing";
 
 export default function Home() {
-  return (
-    <LoginButton mode="redirect" asChild>
-      <Button variant="default" className="rounded px-4">
-        Sign In
-      </Button>
-    </LoginButton>
-  );
+  return <Pricing />;
 }
