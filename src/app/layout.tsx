@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
-import { auth } from "@/auth";
 import "./globals.css";
+import { auth } from "@/auth";
 import { Toaster } from "@/components/ui/toaster";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Footer } from "./_components/footer";
+import { Navbar } from "./_components/navbar";
+import { APP_LONG_DESCRIPTION, APP_NAME } from "@/constants";
 
 export const metadata: Metadata = {
-  title: "Nextcraft - Next.js template for fullstack projects",
-  description: "",
+  title: APP_NAME,
+  description: APP_LONG_DESCRIPTION,
 };
 
 export default async function RootLayout({
@@ -20,11 +20,13 @@ export default async function RootLayout({
   const session = await auth();
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <main className="flex h-screen flex-col items-center justify-center ">
+      <body className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow flex flex-col items-center justify-center py-10">
           <SessionProvider session={session}>{children}</SessionProvider>
         </main>
         <Toaster />
+        <Footer />
       </body>
     </html>
   );
