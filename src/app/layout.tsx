@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Footer } from "./_components/footer";
 import { Navbar } from "./_components/navbar";
 import { APP_LONG_DESCRIPTION, APP_NAME } from "@/constants";
+import NextTopLoader from "nextjs-toploader";
 
 export const metadata: Metadata = {
   title: APP_NAME,
@@ -21,6 +22,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen">
+        <NextTopLoader color="#6d28d9" showSpinner={false} />
         <Navbar />
         <main className="flex-grow flex flex-col items-center justify-center py-10">
           <SessionProvider session={session}>{children}</SessionProvider>
