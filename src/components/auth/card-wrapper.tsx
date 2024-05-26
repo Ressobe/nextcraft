@@ -9,6 +9,7 @@ import {
 import { Header } from "./header";
 import { Social } from "./social";
 import { BackButton } from "./back-button";
+import { APP_NAME } from "@/constants";
 
 type CardWrapperProps = {
   children?: React.ReactNode;
@@ -28,7 +29,7 @@ export function CardWrapper({
   return (
     <Card className="w-[400px] shadow-md rounded">
       <CardHeader>
-        <Header label={headerLabel} />
+        <Header heading={APP_NAME} label={headerLabel} />
       </CardHeader>
 
       <CardContent>{children}</CardContent>
