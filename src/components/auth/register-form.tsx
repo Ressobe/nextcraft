@@ -19,6 +19,7 @@ import { CardWrapper } from "./card-wrapper";
 import { FormError } from "@/components/form-error";
 import { FormSucess } from "../form-sucess";
 import { registerAction } from "@/actions/register";
+import { TailSpin } from "react-loader-spinner";
 
 export function RegisterForm() {
   const [error, setError] = useState<string | undefined>("");
@@ -84,7 +85,7 @@ export function RegisterForm() {
                     <Input
                       {...field}
                       disabled={isPending}
-                      placeholder="bartek"
+                      placeholder="john"
                       type="text"
                     />
                   </FormControl>
@@ -134,10 +135,25 @@ export function RegisterForm() {
           <Button
             variant="secondary"
             type="submit"
-            className="w-full rounded-lg"
+            className="w-full rounded-lg relative"
             disabled={isPending}
           >
-            Create an account
+            {isPending ? (
+              <>
+                <TailSpin
+                  visible={true}
+                  height="25"
+                  width="25"
+                  color="#6d28d9"
+                  ariaLabel="tail-spin-loading"
+                  wrapperClass="absolute left-[2rem]"
+                  radius="1"
+                />
+                Create an account
+              </>
+            ) : (
+              <>Create an account</>
+            )}
           </Button>
         </form>
       </Form>

@@ -14,7 +14,12 @@ type HeaderProps = {
 export function Header({ label, heading }: HeaderProps) {
   return (
     <div className="w-full flex flex-col gap-y-4 items-center">
-      <h1 className={cn("text-3xl font-semibold", font.className)}>
+      <h1
+        className={cn(
+          "text-3xl font-semibold text-gradient bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500",
+          font.className,
+        )}
+      >
         {heading}
       </h1>
       <p className="text-muted-foreground text-sm">{label}</p>

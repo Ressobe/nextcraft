@@ -54,7 +54,7 @@ export function ProPlan({
         </ul>
       </div>
       <div className="mt-6">
-        <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:brightness-150 transition-all">
+        <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:brightness-150 transition-all transform active:scale-110">
           Get Started
         </Button>
       </div>

@@ -45,7 +45,7 @@ export function BasicPlan({
         </ul>
       </div>
       <div className="mt-6">
-        <Button className="w-full bg-background text-foreground hover:bg-secondary transition-all ">
+        <Button className="w-full bg-background text-foreground hover:bg-secondary transform transition-all active:scale-110">
           Get Started
         </Button>
       </div>

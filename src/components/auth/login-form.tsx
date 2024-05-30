@@ -21,6 +21,7 @@ import { FormError } from "@/components/form-error";
 import { FormSucess } from "../form-sucess";
 import { loginAction } from "@/actions/login";
 import Link from "next/link";
+import { TailSpin } from "react-loader-spinner";
 
 export function LoginForm() {
   const [error, setError] = useState<string | undefined>("");
@@ -112,10 +113,25 @@ export function LoginForm() {
           <Button
             variant="secondary"
             type="submit"
-            className="w-full"
+            className="w-full relative"
             disabled={isPending}
           >
-            Login
+            {isPending ? (
+              <>
+                <TailSpin
+                  visible={true}
+                  height="25"
+                  width="25"
+                  color="#6d28d9"
+                  ariaLabel="tail-spin-loading"
+                  radius="1"
+                  wrapperClass="absolute left-[2rem]"
+                />
+                Login
+              </>
+            ) : (
+              <>Login</>
+            )}
           </Button>
         </form>
       </Form>
