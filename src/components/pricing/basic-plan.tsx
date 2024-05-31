@@ -1,6 +1,8 @@
 import { ESubscriptionPeriod } from "@/types";
 import { Check, X } from "lucide-react";
 import { Button } from "../ui/button";
+import { APP_NAME } from "@/constants";
+import Image from "next/image";
 
 type TBasicPlanProps = {
   price: number;
@@ -45,8 +47,9 @@ export function BasicPlan({
         </ul>
       </div>
       <div className="mt-6">
-        <Button className="w-full bg-background text-foreground hover:bg-secondary transform transition-all active:scale-110">
-          Get Started
+        <Button className="w-full flex gap-x-2 bg-background text-foreground hover:bg-secondary transform transition-all active:scale-110">
+          <Image src="/rocket.png" width={30} height={30} alt="icon" /> Get{" "}
+          {APP_NAME}
         </Button>
       </div>
     </div>

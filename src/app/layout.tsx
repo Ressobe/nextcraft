@@ -21,10 +21,11 @@ export default async function RootLayout({
   const session = await auth();
   return (
     <html lang="en">
+      <link rel="icon" href="/rocket.png" sizes="any" />
       <body className="flex flex-col min-h-screen">
         <NextTopLoader color="#6d28d9" showSpinner={false} />
         <Navbar />
-        <main className="flex-grow flex flex-col items-center justify-center py-10">
+        <main className="flex-grow flex flex-col items-center justify-center py-10 gap-y-32">
           <SessionProvider session={session}>{children}</SessionProvider>
         </main>
         <Toaster />

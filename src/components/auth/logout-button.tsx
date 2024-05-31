@@ -8,9 +8,12 @@ type LogoutButtonProps = {
 };
 
 export function LogoutButton({ children }: LogoutButtonProps) {
+  const handleClick = () => {
+    logoutAction();
+  };
   return (
     <Button
-      onClick={logoutAction}
+      onClick={handleClick}
       className="hover:cursor-pointer transform transition-all active:scale-110"
     >
       {children}

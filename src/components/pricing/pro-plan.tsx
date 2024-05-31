@@ -1,6 +1,8 @@
 import { ESubscriptionPeriod } from "@/types";
 import { Check, X } from "lucide-react";
 import { Button } from "../ui/button";
+import { APP_NAME } from "@/constants";
+import Image from "next/image";
 
 type TProPlanProps = {
   price: number;
@@ -54,8 +56,9 @@ export function ProPlan({
         </ul>
       </div>
       <div className="mt-6">
-        <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:brightness-150 transition-all transform active:scale-110">
-          Get Started
+        <Button className="w-full flex gap-x-2 bg-gradient-to-r from-pink-500 to-purple-500 hover:brightness-150 transition-all transform active:scale-110">
+          <Image src="/rocket.png" width={30} height={30} alt="icon" /> Get Get{" "}
+          {APP_NAME}
         </Button>
       </div>
     </div>

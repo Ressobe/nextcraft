@@ -7,7 +7,7 @@ import {
 
 export function Faq() {
   return (
-    <section className="w-3/4 flex justify-between pt-12">
+    <section className="flex px-12 w-full justify-between">
       <h2 className="text-3xl font-bold"> Frequently Asked Questions</h2>
       <Accordion type="multiple" className="w-3/5">
         <AccordionItem value="item-1">

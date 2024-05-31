@@ -1,27 +1,35 @@
-import {
-  APP_LONG_DESCRIPTION,
-  APP_NAME,
-  APP_SHORT_DESCRIPTION,
-} from "@/constants";
+import { APP_LONG_DESCRIPTION, APP_NAME } from "@/constants";
+import Image from "next/image";
 import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="w-full py-6 md:py-12 lg:py-16 xl:py-20">
-      <div className="container flex flex-col items-center justify-center gap-4 px-4 md:px-6 text-center">
+    <section className="w-3/4">
+      <div className="flex items-center justify-center pt-10 gap-10 px-4 md:px-6 text-left">
         <div className="space-y-6">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-7xl  text-gradient bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
-            {APP_NAME}
-          </h1>
-          <h2 className="text-3xl font-bold tracking-tighter text-indigo-400">
-            {APP_SHORT_DESCRIPTION}
-          </h2>
-          <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+          <div>
+            <h2 className="text-4xl font-bold tracking-tighter">
+              Craft your app with{" "}
+              <span className="text-indigo-400 text-gradient bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+                {APP_NAME}
+              </span>
+            </h2>
+            <h3 className="text-2xl pt-2 font-bold tracking-tighter ">
+              Create stunning websites{" "}
+              <span className="text-gradient bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+                effortlessly{" "}
+              </span>{" "}
+              and
+              <span className="text-gradient bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+                {" "}
+                fast.
+              </span>
+            </h3>
+          </div>
+          <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
             {APP_LONG_DESCRIPTION}
           </p>
-        </div>
-        <div className="mx-auto w-full max-w-sm space-y-6">
-          <p className="text-xs text-gray-500 dark:text-gray-400">
+          <p className="text-xs text-gray-500">
             Sign up to get notified when we launch.
             <span> </span>
             <Link
@@ -32,6 +40,12 @@ export function Hero() {
             </Link>
           </p>
         </div>
+        <Image
+          src="/rocket.png"
+          width={200}
+          height={200}
+          alt="nextcraft-logo"
+        />
       </div>
     </section>
   );
